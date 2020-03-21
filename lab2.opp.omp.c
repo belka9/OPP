@@ -21,8 +21,8 @@ int main(int argc, char **argv) {//задаем потоки
     int i, j;
 
     for (i = 0; i < N; ++i) {//заполняем матрицу
-        b[i] = N + 1;
-        x[i] = 0;
+        b[i] = (double)N + 1.0;
+        x[i] = 0.0;
         for (j = 0; j < N; ++j) {
             if (i == j) {
                 matrix[i * N + j] = 2.0;
