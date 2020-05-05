@@ -131,6 +131,7 @@ int main(int argc, char **argv) {
     free(x);
     free(b);
     MPI_Finalize();
+    printf("\n");
 
 
     return 0;
