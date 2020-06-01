@@ -28,7 +28,7 @@ void init_helper_comms(MPI_Comm grid, MPI_Comm *rows_comm, MPI_Comm *col_comm, i
 
 
 void distribute_matrices(double *matrixA, double *matrixB, double *partA, double *partB, MPI_Comm row_comm,
-                         MPI_Comm col_comm,const int coords[n_dims]) {
+                         MPI_Comm col_comm, int coords[n_dims]) {
     if(coords[x] == 0) {
         MPI_Scatter(matrixA, A_rows * A_cols / grid_rows, MPI_DOUBLE, partA, A_rows * A_cols / grid_rows, MPI_DOUBLE, 0,
                     col_comm);
@@ -74,7 +74,7 @@ void fill_matrix(double *matrix, int row, int col, double value) {
 void matrix_mult(const double *A, const double *B, double *C,int ARows,int AColumns, int BRows,int BColumns){
     for (int i = 0; i < ARows; i++) {
         for (int j = 0; j < BColumns; j++) {
-            double sum = 0;
+            double sum = 0.0;
 
             for (int k = 0; k < AColumns; k++) {
                 sum += A[i * AColumns + k] * B[k * BColumns + j];
