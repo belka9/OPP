@@ -28,7 +28,7 @@ void init_helper_comms(MPI_Comm grid, MPI_Comm *rows_comm, MPI_Comm *col_comm, i
 
 
 void distribute_matrices(double *matrixA, double *matrixB, double *partA, double *partB, MPI_Comm row_comm,
-                         MPI_Comm col_comm, int coords[n_dims]) {
+                         MPI_Comm col_comm, const int coords[n_dims]) {
     if(coords[x] == 0) {
         MPI_Scatter(matrixA, A_rows * A_cols / grid_rows, MPI_DOUBLE, partA, A_rows * A_cols / grid_rows, MPI_DOUBLE, 0,
                     col_comm);
